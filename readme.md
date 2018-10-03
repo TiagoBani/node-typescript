@@ -23,3 +23,4 @@ npm run lint
 ```bash
 docker build .
 ```
+Project Original: https://github.com/RisingStack/node-typescript-starter 
