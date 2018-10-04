@@ -13,10 +13,11 @@ export class HomeRoute {
     }
     route(){
         this.router.all('/:name?', (req, res) => {
-            res.json(this.responseJson(
+            const response = this.responseJson(
                 { Request:req, Response:res }, 
                 req.method 
-                ))
+                )
+            res.status(!response.status ? 200: response.status).json(response)
         })
         this.express.use('/', this.router)
     }
@@ -24,7 +25,7 @@ export class HomeRoute {
     responseJson(obj:{Request, Response}, method: string){
         //Pega o metodo http feito e chama a função correspondente, caso não exista retorna erro
         return this[method.toLowerCase()] ? this[method.toLowerCase()](obj): {
-            status: false,
+            status: 404,
             message: `Method ${method} not implemented`
         }
     }
