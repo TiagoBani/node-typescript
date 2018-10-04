@@ -1,6 +1,6 @@
 import { Competitor } from './competitor';
 
-export class Competicao {
+export class Competition {
 
     private _week: number
     private _name: string
@@ -10,6 +10,12 @@ export class Competicao {
 
     constructor(private _id?: number){
         this._id= _id? _id : 0
+    }
+    public getId(): number {
+        return this._id;
+    }
+    public setId(_id: number): void {
+        this._id = _id ? _id : this._id
     }
     public getWeek(): number{
         return this._week
