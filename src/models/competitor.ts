@@ -1,6 +1,6 @@
-export class Competidor {
+export class Competitor {
     protected _name: string
-    protected _idade: number
+    protected _age: number
     protected _nascimento: Date
     
     constructor(protected _id?: number){
@@ -18,11 +18,11 @@ export class Competidor {
     public setName(_name: string): void {
         this._name = _name ? _name : this._name
     }
-    public getIdade(): number {
-        return this._idade
+    public getAge(): number {
+        return this._age
     }
-    public setIdade(_idade: number): void {
-        this._idade = _idade ? _idade : this._idade
+    public setAge(_age: number): void {
+        this._age = _age ? _age : this._age
     }
     public getNascimento(): Date {
         return this._nascimento

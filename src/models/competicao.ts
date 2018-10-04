@@ -1,12 +1,12 @@
-import { Competidor } from './competidor';
+import { Competitor } from './competitor';
 
 export class Competicao {
 
     private _week: number
     private _name: string
     private _date: Date;
-    private _winner: Competidor
-    private _competitors: Competidor[]
+    private _winner: Competitor
+    private _competitors: Competitor[]
 
     constructor(private _id?: number){
         this._id= _id? _id : 0
@@ -29,16 +29,16 @@ export class Competicao {
     public setName(_name: string): void {
         this._name = _name? _name : this._name;
     }
-    public getWinner(): Competidor {
+    public getWinner(): Competitor {
         return this._winner
     }
-    public setWinner(_winner: Competidor): void {
+    public setWinner(_winner: Competitor): void {
         this._winner = _winner ? _winner : this._winner 
     }
-    public getCompetitors(): Competidor[]{
+    public getCompetitors(): Competitor[]{
         return this._competitors
     }
-    public setCompetitors(_competitors: Competidor[]): void {
+    public setCompetitors(_competitors: Competitor[]): void {
         this._competitors = _competitors ? _competitors : this._competitors
     }
 }
