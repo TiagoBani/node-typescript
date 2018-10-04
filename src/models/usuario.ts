@@ -1,29 +1,29 @@
 export class Usuario {
     constructor(
-        private id ?: number,
-        private name ?: string,
-        private idade ?: number
+        private _id ?: number,
+        private _name ?: string,
+        private _password ?: string
     ){
-        this.id = id ? id: 0
-        this.name = name ? name: null
-        this.idade = idade ? idade: null
+        this._id = _id ? _id: 0
+        this._name = _name ? _name: null
+        this._password = _password ? _password: null
     }
-    public getId(){
-        return this.id
+    public getId(): number{
+        return this._id
     }
-    public setId(id: number){
-        this.id = id
+    public setId(_id: number): void{
+        this._id = _id
     }
-    public getName(){
-        return this.name
+    public get_Name(): string{
+        return this._name
     }
-    public setName(name: string){
-        this.name = name
+    public set_Name(_name: string): void {
+        this._name = _name
     }
-    public getIdade(){
-        return this.idade
+    public getPass(): string {
+        return this._password
     }
-    public setIdade(idade: number){
-        this.idade = idade
+    public setPass(_password: string): void{
+        this._password = _password
     }
 }
