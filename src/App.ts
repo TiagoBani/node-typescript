@@ -1,3 +1,4 @@
+import { CompetidorRoute } from './route/competidor.route';
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 
@@ -16,8 +17,10 @@ class App {
   }
   
   private mountRoutes (): void {
-    const router = express.Router()    
+    const router = express.Router()
+    
     const homeRoute = new HomeRoute(this.express, router)
+    const competidorRoute = new CompetidorRoute(this.express, router)
   }
 }
 
