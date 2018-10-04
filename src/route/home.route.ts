@@ -12,7 +12,7 @@ export class HomeRoute {
         this.route()
     }
     route(){
-        this.router.all('/:name?', (req, res) => {
+        this.router.all('/:id?', (req, res) => {
             const response = this.responseJson(
                 { Request:req, Response:res }, 
                 req.method 
@@ -31,9 +31,9 @@ export class HomeRoute {
     }
     get(obj:{Request, Response}) {
         //apenas os registros filstrados
-        if(obj.Request.params.name != null){
+        if(obj.Request.params.id != null){
             return {
-                usuarios: this.usuarios.filter(e => e.getName() === obj.Request.params.name),
+                usuarios: this.usuarios.filter(e => e.getId() === Number.parseInt(obj.Request.params.id)),
                 message: 'Select com where'
             }
         }
@@ -44,21 +44,24 @@ export class HomeRoute {
         }
     }
     post(obj:{Request, Response}) {
-        this.usuarios.push(new Usuario(obj.Request.body.nome))
+        this.usuarios.push(new Usuario(this.usuarios.length,obj.Request.body.nome))
         return {
             usuarios: this.usuarios,
             message: 'Insert requisitado'
         }
     }
     put(obj:{Request, Response}) {
-        this.usuarios = this.usuarios.filter(e => e.getName() === obj.Request.body.nome)
+        this.usuarios.forEach(e => {
+            if(e.getId() === Number.parseInt(obj.Request.params.id))
+                e.setName(obj.Request.body.nome)
+        })
         return {
             usuarios:this.usuarios,
             message: 'Update requisitado'
         }
     }
     delete(obj:{Request, Response}) {
-        this.usuarios = this.usuarios.filter(e => e.getName() !== obj.Request.body.nome)
+        this.usuarios = this.usuarios.filter(e => e.getId() === Number.parseInt(obj.Request.params.id))
         return {
             usuarios: this.usuarios,
             message: 'Delete requisitado'
