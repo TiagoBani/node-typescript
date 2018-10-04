@@ -26,13 +26,13 @@ export class CompetitorRoute extends AbstractRoute {
         }
     }
     post(obj:{Request, Response}) {
-        const competidor = new Competitor(this.competitors.length)
+        const competitor = new Competitor(this.competitors.length)
         
-        competidor.setName(obj.Request.body.nome)
-        competidor.setAge(obj.Request.body.idade)
-        competidor.setNascimento(obj.Request.body.nascimento)
+        competitor.setName(obj.Request.body.nome)
+        competitor.setAge(obj.Request.body.idade)
+        competitor.setNascimento(obj.Request.body.nascimento)
 
-        this.competitors.push(competidor)
+        this.competitors.push(competitor)
         return {
             competitors: this.competitors,
             message: 'Insert requested'
