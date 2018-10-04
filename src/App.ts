@@ -1,12 +1,11 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 
-import { AppResponse } from './response/App-response';
+import { HomeRoute } from './route/home.route';
 
 class App {
   public express: any
   public bodyParser: any
-  private response: any
 
   constructor () {
     this.express = express()
@@ -14,18 +13,11 @@ class App {
     this.express.use(bodyParser.urlencoded({ extended: true }))
     
     this.mountRoutes()
-    this.response = new AppResponse()
   }
-
+  
   private mountRoutes (): void {
     const router = express.Router()    
-    router.all('/:name?', (req, res) => {
-      res.json(this.response.responseJson(
-          { Request:req, Response:res }, 
-          req.method 
-      ))
-    })
-    this.express.use('/', router)
+    const homeRoute = new HomeRoute(this.express, router)
   }
 }
 

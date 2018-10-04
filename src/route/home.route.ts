@@ -1,11 +1,32 @@
+import * as express from 'express';
+
 import { Usuario } from "../models/usuario";
 
-export class AppResponse {
+export class HomeRoute {
     private usuarios: Usuario[] = []
+
+    constructor(
+        private express: any,
+        private router: express.Router
+    ){
+        this.route()
+    }
+    route(){
+        this.router.all('/:name?', (req, res) => {
+            res.json(this.responseJson(
+                { Request:req, Response:res }, 
+                req.method 
+                ))
+        })
+        this.express.use('/', this.router)
+    }
+
     responseJson(obj:{Request, Response}, method: string){
-        //Pega o metodo http feito e chama a função correspondente
-        //return Object.keys(obj.Request.params).length > 0 ? this.getOnly(obj) : this[method.toLowerCase()](obj)
-        return this[method.toLowerCase()](obj)
+        //Pega o metodo http feito e chama a função correspondente, caso não exista retorna erro
+        return this[method.toLowerCase()] ? this[method.toLowerCase()](obj): {
+            status: false,
+            message: `Method ${method} not implemented`
+        }
     }
     get(obj:{Request, Response}) {
         //apenas os registros filstrados
