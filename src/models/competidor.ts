@@ -1,33 +1,33 @@
 export class Competidor {
-    private name: string
-    private idade: number
-    private nascimento: Date
+    protected _name: string
+    protected _idade: number
+    protected _nascimento: Date
     
-    constructor(private id?: number){
-        this.id = id ? id: 0
+    constructor(protected _id?: number){
+        this._id = _id ? _id: 0
     }
-    public getId(){
-        return this.id
+    public getId(): number {
+        return this._id
     }
-    public setId(id: number){
-        this.id = id ? id: 0
+    public setId(_id: number): void {
+        this._id = _id ? _id: 0
     }
-    public getName(){
-        return this.name
+    public getName(): string {
+        return this._name
     }
-    public setName(name: string){
-        this.name = name ? name : this.name
+    public setName(_name: string): void {
+        this._name = _name ? _name : this._name
     }
-    public getIdade(){
-        return this.idade
+    public getIdade(): number {
+        return this._idade
     }
-    public setIdade(idade: number){
-        this.idade = idade ? idade : this.idade
+    public setIdade(_idade: number): void {
+        this._idade = _idade ? _idade : this._idade
     }
-    public getNascimento(){
-        return this.nascimento
+    public getNascimento(): Date {
+        return this._nascimento
     }
-    public setNascimento(nascimento: Date){
-        this.nascimento = nascimento ? nascimento: this.nascimento
+    public setNascimento(_nascimento: Date): void {
+        this._nascimento = _nascimento ? _nascimento: this._nascimento
     }
 }
