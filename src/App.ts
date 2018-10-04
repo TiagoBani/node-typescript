@@ -19,8 +19,8 @@ class App {
   private mountRoutes (): void {
     const router = express.Router()
     
-    const homeRoute = new HomeRoute(this.express, router)
-    const competitorRoute = new CompetitorRoute(this.express, router)
+    const homeRoute = new HomeRoute(this.express, router, '/')
+    const competitorRoute = new CompetitorRoute(this.express, router, 'competitors')
   }
 }
 

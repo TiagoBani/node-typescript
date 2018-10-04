@@ -3,13 +3,6 @@ import { Competitor } from '../models/competitor';
 
 export class CompetitorRoute extends AbstractRoute {
     private competitors:Competitor[] = []
-    route(){
-        this.router.all('/competitors/:id?', (req, res) => {
-            const response = this.responseJson({ Request:req, Response:res }, req.method)
-            res.status(!response.status ? 200: response.status).json(response)
-        })
-        this.express.use('/competitors', this.router)
-    }
 
     get(obj:{Request, Response}) {
         //apenas os registros filstrados
