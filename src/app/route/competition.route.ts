@@ -8,7 +8,7 @@ export class CompetitionRoute extends AbstractRoute{
         //apenas os registros filstrados
         if(obj.Request.params.id != null){
             return {
-                competitions: this.competitions.filter(e => e.getId() === Number.parseInt(obj.Request.params.id)),
+                competitions: this.competitions.filter(e => e.getId() === obj.Request.params.id),
                 message: 'Select with where'
             }
         }
@@ -19,7 +19,7 @@ export class CompetitionRoute extends AbstractRoute{
         }
     }
     post(obj:{Request, Response}) {
-        const competition = new Competition(this.competitions.length)
+        const competition = new Competition(this.competitions.length.toString())
         
         competition.setName(obj.Request.body.nome)
         competition.setDate(obj.Request.body.data)
@@ -35,7 +35,7 @@ export class CompetitionRoute extends AbstractRoute{
     }
     put(obj:{Request, Response}) {
         this.competitions.forEach(e => {
-            if(e.getId() === Number.parseInt(obj.Request.params.id)){
+            if(e.getId() === obj.Request.params.id){
                 e.setName(obj.Request.body.nome)
                 e.setDate(obj.Request.body.data)
                 e.setWeek(obj.Request.body.semana)
@@ -49,7 +49,7 @@ export class CompetitionRoute extends AbstractRoute{
         }
     }
     delete(obj:{Request, Response}) {
-        this.competitions = this.competitions.filter(e => e.getId() === Number.parseInt(obj.Request.params.id))
+        this.competitions = this.competitions.filter(e => e.getId() === obj.Request.params.id)
         return {
             competitions: this.competitions,
             message: 'Delete requested'

@@ -8,13 +8,13 @@ export class Competition {
     private _winner: Competitor
     private _competitors: Competitor[]
 
-    constructor(private _id?: number){
-        this._id= _id? _id : 0
+    constructor(private _id?: string){
+        this._id= _id ? _id : '0'
     }
-    public getId(): number {
+    public getId(): string {
         return this._id;
     }
-    public setId(_id: number): void {
+    public setId(_id: string): void {
         this._id = _id ? _id : this._id
     }
     public getWeek(): number{

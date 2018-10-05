@@ -8,7 +8,7 @@ export class CompetitorRoute extends AbstractRoute {
         //apenas os registros filstrados
         if(obj.Request.params.id != null){
             return {
-                competitors: this.competitors.filter(e => e.getId() === Number.parseInt(obj.Request.params.id)),
+                competitors: this.competitors.filter(e => e.getId() === obj.Request.params.id),
                 message: 'Select with where'
             }
         }
@@ -19,7 +19,7 @@ export class CompetitorRoute extends AbstractRoute {
         }
     }
     post(obj:{Request, Response}) {
-        const competitor = new Competitor(this.competitors.length)
+        const competitor = new Competitor(this.competitors.length.toString())
         
         competitor.setName(obj.Request.body.nome)
         competitor.setAge(obj.Request.body.idade)
@@ -33,7 +33,7 @@ export class CompetitorRoute extends AbstractRoute {
     }
     put(obj:{Request, Response}) {
         this.competitors.forEach(e => {
-            if(e.getId() === Number.parseInt(obj.Request.params.id)){
+            if(e.getId() === obj.Request.params.id){
                 e.setName(obj.Request.body.nome)
                 e.setAge(obj.Request.body.idade)
                 e.setNascimento(obj.Request.body.nascimento)
@@ -45,7 +45,7 @@ export class CompetitorRoute extends AbstractRoute {
         }
     }
     delete(obj:{Request, Response}) {
-        this.competitors = this.competitors.filter(e => e.getId() === Number.parseInt(obj.Request.params.id))
+        this.competitors = this.competitors.filter(e => e.getId() === obj.Request.params.id)
         return {
             competitors: this.competitors,
             message: 'Delete requested'

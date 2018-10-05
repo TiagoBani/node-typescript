@@ -1,17 +1,17 @@
 export class Usuario {
     constructor(
-        private _id ?: number,
+        private _id ?: string,
         private _name ?: string,
         private _password ?: string
     ){
-        this._id = _id ? _id: 0
+        this._id = _id ? _id: '0'
         this._name = _name ? _name: null
         this._password = _password ? _password: null
     }
-    public getId(): number{
+    public getId(): string{
         return this._id
     }
-    public setId(_id: number): void{
+    public setId(_id: string): void{
         this._id = _id
     }
     public get_Name(): string{

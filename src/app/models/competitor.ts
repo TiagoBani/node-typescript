@@ -3,14 +3,14 @@ export class Competitor {
     protected _age: number
     protected _nascimento: Date
     
-    constructor(protected _id?: number){
-        this._id = _id ? _id: 0
+    constructor(protected _id?: string){
+        this._id = _id ? _id: '0'
     }
-    public getId(): number {
+    public getId(): string {
         return this._id
     }
-    public setId(_id: number): void {
-        this._id = _id ? _id: 0
+    public setId(_id: string): void {
+        this._id = _id ? _id: '0'
     }
     public getName(): string {
         return this._name
