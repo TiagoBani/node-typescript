@@ -9,7 +9,6 @@ export abstract class AbstractRoute {
         this.route(resource)
     }
     protected route(resource: string): void {
-        console.log(resource)
         this.router.all(`/${resource}/:id?`, (req, res) => {
             const response = this.responseJson({ Request:req, Response:res }, req.method)
             res.status(!response.status ? 200: response.status).json(response)
