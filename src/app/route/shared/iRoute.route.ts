@@ -1,6 +1,8 @@
+import { iHttp } from "../../shared/iHttp";
+
 export interface iRoute{
-    get(obj:{Request, Response});
-    post(obj:{Request, Response});
-    put(obj:{Request, Response});
-    delete(obj:{Request, Response});
+    get(obj:iHttp);
+    post(obj:iHttp);
+    put(obj:iHttp);
+    delete(obj:iHttp);
 }

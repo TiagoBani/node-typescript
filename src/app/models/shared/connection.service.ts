@@ -1,5 +1,7 @@
 import * as mysql from 'mysql'
 
+import { DB } from './../../config/db';
+
 export class ConnectionService {
 
     public connection: any
@@ -9,10 +11,10 @@ export class ConnectionService {
     }    
     private connect() {
         this.connection = mysql.createConnection({ 
-                host: 'localhost',
-                user: 'root', 
-                password: 'root',
-                database: 'node_typescript' 
+                host: DB.database,
+                user: DB.user, 
+                password: DB.password,
+                database: DB.database 
         })
     }
     public query(sql, params, cb){

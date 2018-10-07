@@ -1,4 +1,5 @@
 import { AbstractRoute } from './shared/abstract.route';
+import { iHttp } from '../shared/iHttp';
 
 export class HomeRoute extends AbstractRoute {
     
@@ -10,7 +11,7 @@ export class HomeRoute extends AbstractRoute {
         })
         this.express.use('/', this.router)
     }
-    get(obj:{Request, Response}) {
+    get(obj:iHttp) {
         return { message: 'Welcome' }
     }
 }
