@@ -1,50 +1,22 @@
-import { Competitor } from './competitor';
+import { ConnectionService } from './connection.service';
+import { iCompetition } from './shared/iCompetition';
 
 export class Competition {
+    private db: ConnectionService = new ConnectionService()
 
-    private _week: number
-    private _name: string
-    private _date: Date;
-    private _winner: Competitor
-    private _competitors: Competitor[]
+    constructor(){ }
 
-    constructor(private _id?: string){
-        this._id= _id ? _id : '0'
+    public async select(id: string, cb: any) {
+        const where = id != null?` where _id = ? `:``
+        return this.db.query(`select * from competition ${where}`, id, cb)
     }
-    public getId(): string {
-        return this._id;
+    public async insert(data: iCompetition, cb: any) {
+        return this.db.query(`insert into competition set ?`, data, cb)
     }
-    public setId(_id: string): void {
-        this._id = _id ? _id : this._id
+    public async update(data: iCompetition, id:string, cb: any) {
+        return this.db.query(`update competition set ? where _id = '${id}'`, data, cb)
     }
-    public getWeek(): number{
-        return this._week
-    }
-    public setWeek(week: number): void{
-        this._week = week? week : this._week
-    }
-    public getDate(): Date {
-        return this._date;
-    }
-    public setDate(_date: Date): void {
-        this._date = _date? _date : this._date;
-    }
-    public getName(): string {
-        return this._name
-    }
-    public setName(_name: string): void {
-        this._name = _name? _name : this._name;
-    }
-    public getWinner(): Competitor {
-        return this._winner
-    }
-    public setWinner(_winner: Competitor): void {
-        this._winner = _winner ? _winner : this._winner 
-    }
-    public getCompetitors(): Competitor[]{
-        return this._competitors
-    }
-    public setCompetitors(_competitors: Competitor[]): void {
-        this._competitors = _competitors ? _competitors : this._competitors
+    public async delete(data:string, cb: any) {
+        return this.db.query(`delete from competition where _id = ?`, data, cb)
     }
 }

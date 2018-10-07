@@ -1,4 +1,4 @@
-import { AbstractRoute } from './abstract.route';
+import { AbstractRoute } from './shared/abstract.route';
 
 export class HomeRoute extends AbstractRoute {
     

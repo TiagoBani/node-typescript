@@ -1,60 +1,57 @@
-import { Tournament } from './../models/tournament';
-import { AbstractRoute } from "./abstract.route";
+import { iRoute } from "./shared/iRoute.route";
+import { AbstractRoute } from "./shared/abstract.route";
+import { Tournament } from '../models/tournament';
+import { iTournament } from '../models/shared/iTournament';
 
-export class TournamentRoute extends AbstractRoute{
-    private tournaments: Tournament[] = [];
+export class TournamentRoute extends AbstractRoute implements iRoute{
+    private dao = new Tournament();
 
+    protected route(resource: string): void {
+        this.router.all(`/${resource}/:id?`, (req, res) => {
+            console.log(`Resquested: ${resource} - Method: ${req.method}`)
+            this.responseJson({ Request:req, Response:res }, req.method)
+        })
+    }
     get(obj:{Request, Response}) {
-        //apenas os registros filstrados
-        if(obj.Request.params.id != null){
-            return {
-                tournaments: this.tournaments.filter(e => e.getId() === obj.Request.params.id),
-                message: 'Select with where'
-            }
-        }
-        //todos os registros
-        return {
-            tournaments: this.tournaments,
-            message: 'Select without where'
-        }
+        this.dao.select(obj.Request.params.id, (error, res: iTournament[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Select requested with error'})
+
+            obj.Response.status(200).json({tournaments: res,message: 'Select requested'})
+        })
     }
     post(obj:{Request, Response}) {
-        const tournament = new Tournament(this.tournaments.length.toString())
-        
-        tournament.setName(obj.Request.body.nome)
-        tournament.setDate(obj.Request.body.data)
-        tournament.setWeek(obj.Request.body.semana)
-        tournament.setWinner(obj.Request.body.vencedor)
-        tournament.setCompetitors(obj.Request.body.competidores)
-        tournament.setCompetitions(obj.Request.body.competicoes)
+        obj = this.jsonToString(obj)
 
-        this.tournaments.push(tournament)
-        return {
-            tournaments: this.tournaments,
-            message: 'Insert requested'
-        }
+        this.dao.insert(obj.Request.body, (error, res: iTournament[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Insert requested with error'})
+
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Insert requested'})
+        })
     }
     put(obj:{Request, Response}) {
-        this.tournaments.forEach(e => {
-            if(e.getId() === obj.Request.params.id){
-                e.setName(obj.Request.body.nome)
-                e.setDate(obj.Request.body.data)
-                e.setWeek(obj.Request.body.semana)
-                e.setWinner(obj.Request.body.vencedor)
-                e.setCompetitors(obj.Request.body.competidores)
-                e.setCompetitions(obj.Request.body.competicoes)
-            }
+        obj = this.jsonToString(obj)
+
+        this.dao.update(obj.Request.body, obj.Request.params.id, (error, res: iTournament[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Update requested with error'})
+
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Update requested'})
         })
-        return {
-            tournaments:this.tournaments,
-            message: 'Update requested'
-        }
     }
     delete(obj:{Request, Response}) {
-        this.tournaments = this.tournaments.filter(e => e.getId() === obj.Request.params.id)
-        return {
-            tournaments: this.tournaments,
-            message: 'Delete requested'
-        }
+        this.dao.delete(obj.Request.params.id, (error, res: iTournament[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Delete requested with error'})
+
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Delete requested'})
+        })
+    }
+    private jsonToString(obj:{Request, Response}){
+        obj.Request.body._competitions = JSON.stringify(obj.Request.body._competitions);
+        obj.Request.body._competitors = JSON.stringify(obj.Request.body._competitors);
+        obj.Request.body._winner = JSON.stringify(obj.Request.body._winner);
+        return obj;
     }
 }

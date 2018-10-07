@@ -1,33 +1,22 @@
+import { ConnectionService } from './connection.service';
+import { iCompetitor } from './shared/iCompetitor';
+
 export class Competitor {
-    protected _name: string
-    protected _age: number
-    protected _nascimento: Date
-    
-    constructor(protected _id?: string){
-        this._id = _id ? _id: '0'
+    private db: ConnectionService = new ConnectionService()
+
+    constructor(){ }
+
+    public async select(id: string, cb: any) {
+        const where = id != null?` where _id = ? `:``
+        return this.db.query(`select * from competitor ${where}`, id, cb)
     }
-    public getId(): string {
-        return this._id
+    public async insert(data: iCompetitor, cb: any) {
+        return this.db.query(`insert into competitor set ?`, data, cb)
     }
-    public setId(_id: string): void {
-        this._id = _id ? _id: '0'
+    public async update(data: iCompetitor, id:string, cb: any) {
+        return this.db.query(`update competitor set ? where _id = '${id}'`, data, cb)
     }
-    public getName(): string {
-        return this._name
-    }
-    public setName(_name: string): void {
-        this._name = _name ? _name : this._name
-    }
-    public getAge(): number {
-        return this._age
-    }
-    public setAge(_age: number): void {
-        this._age = _age ? _age : this._age
-    }
-    public getNascimento(): Date {
-        return this._nascimento
-    }
-    public setNascimento(_nascimento: Date): void {
-        this._nascimento = _nascimento ? _nascimento: this._nascimento
+    public async delete(data:string, cb: any) {
+        return this.db.query(`delete from competitor where _id = ?`, data, cb)
     }
 }

@@ -1,54 +1,46 @@
-import { AbstractRoute } from './abstract.route';
-import { Competitor } from '../models/competitor';
+import { AbstractRoute } from './shared/abstract.route';
+import { Competitor } from './../models/competitor';
+import { iCompetitor } from '../models/shared/iCompetitor';
 
 export class CompetitorRoute extends AbstractRoute {
-    private competitors:Competitor[] = []
+    private dao = new Competitor();
 
+    protected route(resource: string): void {
+        this.router.all(`/${resource}/:id?`, (req, res) => {
+            console.log(`Resquested: ${resource} - Method: ${req.method}`)
+            this.responseJson({ Request:req, Response:res }, req.method)
+        })
+    }
     get(obj:{Request, Response}) {
-        //apenas os registros filstrados
-        if(obj.Request.params.id != null){
-            return {
-                competitors: this.competitors.filter(e => e.getId() === obj.Request.params.id),
-                message: 'Select with where'
-            }
-        }
-        //todos os registros
-        return {
-            competitors: this.competitors,
-            message: 'Select without where'
-        }
+        this.dao.select(obj.Request.params.id, (error, res: iCompetitor[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Select requested with error'})
+
+            obj.Response.status(200).json({tournaments: res,message: 'Select requested'})
+        })
     }
     post(obj:{Request, Response}) {
-        const competitor = new Competitor(this.competitors.length.toString())
-        
-        competitor.setName(obj.Request.body.nome)
-        competitor.setAge(obj.Request.body.idade)
-        competitor.setNascimento(obj.Request.body.nascimento)
+        this.dao.insert(obj.Request.body, (error, res: iCompetitor[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Insert requested with error'})
 
-        this.competitors.push(competitor)
-        return {
-            competitors: this.competitors,
-            message: 'Insert requested'
-        }
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Insert requested'})
+        })
     }
     put(obj:{Request, Response}) {
-        this.competitors.forEach(e => {
-            if(e.getId() === obj.Request.params.id){
-                e.setName(obj.Request.body.nome)
-                e.setAge(obj.Request.body.idade)
-                e.setNascimento(obj.Request.body.nascimento)
-            }
+        this.dao.update(obj.Request.body, obj.Request.params.id, (error, res: iCompetitor[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Update requested with error'})
+
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Update requested'})
         })
-        return {
-            competitors:this.competitors,
-            message: 'Update requested'
-        }
     }
     delete(obj:{Request, Response}) {
-        this.competitors = this.competitors.filter(e => e.getId() === obj.Request.params.id)
-        return {
-            competitors: this.competitors,
-            message: 'Delete requested'
-        }
+        this.dao.delete(obj.Request.params.id, (error, res: iCompetitor[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Delete requested with error'})
+
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Delete requested'})
+        })
     }
 }

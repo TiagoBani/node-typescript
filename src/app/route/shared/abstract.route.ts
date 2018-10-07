@@ -7,19 +7,13 @@ export abstract class AbstractRoute {
         protected resource: string
     ){
         this.route(resource)
-    }
-    protected route(resource: string): void {
-        this.router.all(`/${resource}/:id?`, (req, res) => {
-            console.log(`Resquested: ${resource} - Method: ${req.method}`)
-            const response = this.responseJson({ Request:req, Response:res }, req.method)
-            res.status(!response.status ? 200: response.status).json(response)
-        })
         this.express.use(`/${resource}/`, this.router)
     }
+    protected route(resource){}
     
     protected responseJson(obj:{Request, Response}, method: string){
         //Pega o metodo http feito e chama a função correspondente, caso não exista retorna erro
-        return this[method.toLowerCase()] ? this[method.toLowerCase()](obj): {
+        return this[method.toLowerCase()] ? this[method.toLowerCase()](obj,this.express): {
             status: 404,
             message: `Method ${method} not implemented`
         }

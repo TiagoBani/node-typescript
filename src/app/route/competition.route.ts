@@ -1,58 +1,55 @@
+import { iRoute } from './shared/iRoute.route';
+import { AbstractRoute } from './shared/abstract.route';
+import { iCompetition } from '../models/shared/iCompetition';
 import { Competition } from '../models/competition';
-import { AbstractRoute } from './abstract.route';
 
-export class CompetitionRoute extends AbstractRoute{
-    private competitions: Competition[] = [];
+export class CompetitionRoute extends AbstractRoute implements iRoute{
+    private dao = new Competition();
+
+    protected route(resource: string): void {
+        this.router.all(`/${resource}/:id?`, (req, res) => {
+            console.log(`Resquested: ${resource} - Method: ${req.method}`)
+            this.responseJson({ Request:req, Response:res }, req.method)
+        })
+    }
 
     get(obj:{Request, Response}) {
-        //apenas os registros filstrados
-        if(obj.Request.params.id != null){
-            return {
-                competitions: this.competitions.filter(e => e.getId() === obj.Request.params.id),
-                message: 'Select with where'
-            }
-        }
-        //todos os registros
-        return {
-            competitions: this.competitions,
-            message: 'Select without where'
-        }
+        this.dao.select(obj.Request.params.id, (error, res: iCompetition[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Select requested with error'})
+
+            obj.Response.status(200).json({tournaments: res,message: 'Select requested'})
+        })
     }
     post(obj:{Request, Response}) {
-        const competition = new Competition(this.competitions.length.toString())
-        
-        competition.setName(obj.Request.body.nome)
-        competition.setDate(obj.Request.body.data)
-        competition.setWeek(obj.Request.body.semana)
-        competition.setWinner(obj.Request.body.vencedor)
-        competition.setCompetitors(obj.Request.body.competidores)
+        obj = this.jsonToString(obj)
+        this.dao.insert(obj.Request.body, (error, res: iCompetition[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Insert requested with error'})
 
-        this.competitions.push(competition)
-        return {
-            competitions: this.competitions,
-            message: 'Insert requested'
-        }
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Insert requested'})
+        })
     }
     put(obj:{Request, Response}) {
-        this.competitions.forEach(e => {
-            if(e.getId() === obj.Request.params.id){
-                e.setName(obj.Request.body.nome)
-                e.setDate(obj.Request.body.data)
-                e.setWeek(obj.Request.body.semana)
-                e.setWinner(obj.Request.body.vencedor)
-                e.setCompetitors(obj.Request.body.competidores)
-            }
+        obj = this.jsonToString(obj)
+        this.dao.update(obj.Request.body, obj.Request.params.id, (error, res: iCompetition[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Update requested with error'})
+
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Update requested'})
         })
-        return {
-            competitions:this.competitions,
-            message: 'Update requested'
-        }
     }
     delete(obj:{Request, Response}) {
-        this.competitions = this.competitions.filter(e => e.getId() === obj.Request.params.id)
-        return {
-            competitions: this.competitions,
-            message: 'Delete requested'
-        }
+        this.dao.delete(obj.Request.params.id, (error, res: iCompetition[]) => {
+            if(error)
+                obj.Response.status(500).json({error: error, message: 'Delete requested with error'})
+
+            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Delete requested'})
+        })
+    }
+    private jsonToString(obj:{Request, Response}){
+        obj.Request.body._competitors = JSON.stringify(obj.Request.body._competitors);
+        obj.Request.body._winner = JSON.stringify(obj.Request.body._winner);
+        return obj;
     }
 }
