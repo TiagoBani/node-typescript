@@ -7,7 +7,7 @@ export class CompetitorRoute extends AbstractRoute {
     private dao = new CompetitorDAO();
 
     protected route(resource: string): void {
-        this.router.all(`/${resource}/:id?`, (req, res) => {
+        this.router.all(`${resource}/:id?`, (req, res) => {
             console.log(`Resquested: ${resource} - Method: ${req.method}`)
             this.responseJson({ Request:req, Response:res }, req.method)
         })
