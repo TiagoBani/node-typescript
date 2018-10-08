@@ -1,10 +1,8 @@
-import { ConnectionService } from '../shared/connection.service';
+import { iPersistent } from './../shared/iPersistent';
 import { Tournament } from '../tournament';
+import { Dao } from '../shared/dao';
 
-export class TournamentDAO {
-    private db: ConnectionService = new ConnectionService()
-
-    constructor(){ }
+export class TournamentDAO extends Dao implements iPersistent{
 
     public async select(id: string, cb: any) {
         const where = id != null?` where _id = ? `:``

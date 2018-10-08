@@ -1,8 +1,8 @@
 import * as mysql from 'mysql'
 
-import { DB } from './../../config/db';
+import { DB } from '../../config/db';
 
-export class ConnectionService {
+export class Connection {
 
     public connection: any
 
