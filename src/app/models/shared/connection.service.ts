@@ -11,7 +11,7 @@ export class ConnectionService {
     }    
     private connect() {
         this.connection = mysql.createConnection({ 
-                host: DB.database,
+                host: DB.host,
                 user: DB.user, 
                 password: DB.password,
                 database: DB.database 
