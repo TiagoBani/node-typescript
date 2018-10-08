@@ -7,7 +7,7 @@ export abstract class AbstractCrudRoute extends AbstractRoute implements iRoute 
     protected dao: any
 
     protected route(resource: string): void {
-        this.router.all(`${resource}/:id?`, (req, res) => {
+        this.router.all(`${resource}/:id?`, async (req, res) => {
             console.log(`Resquested: ${resource} - Method: ${req.method}`)
             this.responseJson({ Request:req, Response:res }, req.method)
         })
