@@ -31,6 +31,7 @@ CREATE TABLE `competition` (
   `_date` varchar(45) DEFAULT NULL,
   `_winner` text,
   `_competitors` text,
+  `_result` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -87,4 +88,4 @@ CREATE TABLE `tournament` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-07 23:23:00
+-- Dump completed on 2018-10-08  9:11:46
