@@ -1,4 +1,4 @@
-import { iPersistent } from './iPersistent';
+import { iPersistent } from "./iPersistent";
 import { Connection } from "./connection";
 
 export abstract class Dao implements iPersistent{

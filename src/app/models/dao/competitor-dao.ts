@@ -1,5 +1,5 @@
-import { iPersistent } from './../shared/iPersistent';
 import { Competitor } from '../competitor';
+import { iPersistent } from '../shared/iPersistent';
 import { Dao } from '../shared/dao';
 
 export class CompetitorDAO extends Dao implements iPersistent{
