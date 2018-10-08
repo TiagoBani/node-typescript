@@ -6,6 +6,7 @@ export interface Competition {
     _week: number
     _name: string
     _date: string
+    _result: string
     _winner: Competitor
     _competitors: Competitor[]
 }
