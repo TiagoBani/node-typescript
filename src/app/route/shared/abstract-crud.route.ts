@@ -1,3 +1,5 @@
+import { check, validationResult } from 'express-validator/check'
+
 import { iRoute } from './iRoute.route';
 import { AbstractRoute } from "./abstract.route";
 import { iHttp } from '../../shared/iHttp';
@@ -7,8 +9,7 @@ export abstract class AbstractCrudRoute extends AbstractRoute implements iRoute 
     protected dao: any
 
     protected route(resource: string): void {
-        this.router.all(`${resource}/:id?`, async (req, res) => {
-            console.log(`Resquested: ${resource} - Method: ${req.method}`)
+        this.router.get(`${resource}/:id?`,async (req, res) => { 
             this.responseJson({ Request:req, Response:res }, req.method)
         })
     }
@@ -50,5 +51,8 @@ export abstract class AbstractCrudRoute extends AbstractRoute implements iRoute 
     }
     protected jsonToString(obj){
         return obj
+    }
+    protected validate(obj: iHttp){
+        return obj.Response.status(422).json({ errors: validationResult(obj.Request).array() })
     }
 }
