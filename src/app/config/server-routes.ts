@@ -15,21 +15,19 @@ export class serverRoutes {
         this.competitor()
         this.tournament()
         this.competition()
+
+        this.express.use('/', router)
     }
     private home(){
-        const homeRoute = new HomeRoute(this.express, this.router, '/')
-        this.express.use('/', this.router)
+        const homeRoute = new HomeRoute(this.express, this.router, '/home')
     }
     private competitor(){
         const competitorRoute = new CompetitorRoute(this.express, this.router, '/api/competitors')
-        this.express.use('/api/competitors', this.router)
     }
     private competition(){
         const competitionRoute = new CompetitionRoute(this.express, this.router, '/api/competitions')
-        this.express.use('/api/competitions', this.router)
     }
     private tournament(){
         const tournamentRoute = new TournamentRoute(this.express, this.router, '/api/tournaments')
-        this.express.use('/api/tournaments', this.router)
     }
 }
