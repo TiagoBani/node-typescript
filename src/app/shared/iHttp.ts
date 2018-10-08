@@ -1,4 +1,6 @@
+import { Request, Response } from 'express';
+
 export interface iHttp{
-    Request: any, 
-    Response: any
+    Request: Request, 
+    Response: Response
 }
