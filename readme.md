@@ -1,4 +1,4 @@
-## Skeleton for Node.js applications written in TypeScript
+## Node.js applications written in TypeScript with ExpressJS, Body-Parser, MySQL
 
 ## Documentations in postman
 
