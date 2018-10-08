@@ -22,9 +22,9 @@ class App {
     const router = express.Router()
     
     const homeRoute = new HomeRoute(this.express, router, '/')
-    const competitorRoute = new CompetitorRoute(this.express, router, 'competitors')
-    const competitionRoute = new CompetitionRoute(this.express, router, 'competitions')
-    const tournamentRoute = new TournamentRoute(this.express, router, 'tournaments')
+    const competitorRoute = new CompetitorRoute(this.express, router, 'api/competitors')
+    const competitionRoute = new CompetitionRoute(this.express, router, 'api/competitions')
+    const tournamentRoute = new TournamentRoute(this.express, router, 'api/tournaments')
   }
 }
 
