@@ -3,7 +3,7 @@ import { Competition } from './competition';
 
 export interface Tournament {
 
-    _id: string
+    _id: number
     _name: string
     _week: number
     _date: string

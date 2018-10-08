@@ -1,5 +1,5 @@
 export interface Competitor {
-    _id: string
+    _id: number
     _name: string
     _age: number
     _birth: string
