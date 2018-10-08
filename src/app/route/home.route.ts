@@ -8,7 +8,6 @@ export class HomeRoute extends AbstractRoute {
             const response = this.responseJson({ Request:req, Response:res }, req.method)
             res.status(!response.status ? 200: response.status).json(response)
         })
-        this.express.use(`${resource}`, this.router)
     }
     get(obj:iHttp) {
         return { message: 'Welcome' }
