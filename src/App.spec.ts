@@ -10,19 +10,19 @@ describe('App', () => {
   )
   it('competitors', () =>
   supertest(app)
-  .get('/competitors')
+  .get('/api/competitors')
   .expect('Content-Type', /json/)
   .expect(200)
   )
   it('competitions', () =>
   supertest(app)
-  .get('/competitions')
+  .get('/api/competitions')
   .expect('Content-Type', /json/)
   .expect(200)
   )
   it('tournaments', () =>
     supertest(app)
-      .get('/tournaments')
+      .get('/api/tournaments')
       .expect('Content-Type', /json/)
       .expect(200)
   )
