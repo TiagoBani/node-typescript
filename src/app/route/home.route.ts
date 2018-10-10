@@ -1,15 +1,15 @@
-import { AbstractRoute } from './shared/abstract.route';
 import { iHttp } from '../shared/iHttp';
+import { AbstractRoute } from './shared/abstract.route';
+import { HomeController } from './../controllers/home.controller';
 
 export class HomeRoute extends AbstractRoute {
     
+    protected controller: any
+
     route(resource: string) {
-        this.router.all(`${resource}`, (req, res) => {
-            const response = this.responseJson({ Request:req, Response:res }, req.method)
-            res.status(!response.status ? 200: response.status).json(response)
+        this.router.get(`${resource}`, (req, res) => {
+            this.controller = new HomeController({ Request:req, Response:res })
+            this.controller.home()
         })
-    }
-    get(obj:iHttp) {
-        return { message: 'Welcome' }
     }
 }
