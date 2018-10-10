@@ -1,11 +1,11 @@
-import { iPersistent } from './../shared/iPersistent';
+import { iPersistent } from '../shared/iPersistent';
 import { Competition } from '../competition';
 import { Dao } from '../shared/dao';
 
 export class CompetitionDAO extends Dao implements iPersistent{
 
     public async select(id: number, cb: any) {
-        const where = id != null?` where _id = ? `:``
+        const where = id >= 0 ?` where _id = ? `:``
         return this.db.query(`select * from competition ${where}`, id, cb)
     }
     public async insert(data: Competition, cb: any) {
