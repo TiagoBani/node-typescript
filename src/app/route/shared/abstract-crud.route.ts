@@ -1,12 +1,10 @@
-import { check, validationResult } from 'express-validator/check'
-
 import { iRoute } from './iRoute.route';
 import { AbstractRoute } from "./abstract.route";
 import { iHttp } from '../../shared/iHttp';
 
 export abstract class AbstractCrudRoute extends AbstractRoute implements iRoute {
 
-    protected dao: any
+    protected controller: any
 
     protected route(resource: string): void {
         this.router.get(`${resource}/:id?`,async (req, res) => { 
@@ -14,45 +12,15 @@ export abstract class AbstractCrudRoute extends AbstractRoute implements iRoute 
         })
     }
     get(obj:iHttp) {
-        this.dao.select(obj.Request.params.id, (error, res ) => {
-            if(error)
-                obj.Response.status(500).json({error: error, message: 'Select requested with error'})
-
-            obj.Response.status(200).json({tournaments: res,message: 'Select requested'})
-        })
+        this.controller.select()
     }
     post(obj:iHttp) {
-        obj = this.jsonToString(obj)
-
-        this.dao.insert(obj.Request.body, (error, res ) => {
-            if(error)
-                obj.Response.status(500).json({error: error, message: 'Insert requested with error'})
-
-            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Insert requested'})
-        })
+        this.controller.insert()
     }
     put(obj:iHttp) {
-        obj = this.jsonToString(obj)
-
-        this.dao.update(obj.Request.body, obj.Request.params.id, (error, res ) => {
-            if(error)
-                obj.Response.status(500).json({error: error, message: 'Update requested with error'})
-
-            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Update requested'})
-        })
+        this.controller.update()
     }
-    delete(obj:iHttp) {
-        this.dao.delete(obj.Request.params.id, (error, res) => {
-            if(error)
-                obj.Response.status(500).json({error: error, message: 'Delete requested with error'})
-
-            obj.Response.status(200).json({tournaments: res['affectedRows'], message: 'Delete requested'})
-        })
-    }
-    protected jsonToString(obj){
-        return obj
-    }
-    protected validate(obj: iHttp){
-        return obj.Response.status(422).json({ errors: validationResult(obj.Request).array() })
+    delete(obj:iHttp){
+        this.controller.delete()
     }
 }
