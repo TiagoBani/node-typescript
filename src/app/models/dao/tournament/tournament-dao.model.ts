@@ -1,14 +1,15 @@
-import { iPersistent } from './../shared/iPersistent';
-import { Tournament } from '../tournament';
-import { Dao } from '../shared/dao';
+import { Tournament } from '../../tournament';
+import { Dao } from '../../shared/dao';
+import { iPersistent } from '../../shared/iPersistent';
 
 export class TournamentDAO extends Dao implements iPersistent{
 
     public async select(id: number, cb: any) {
-        const where = id != null?` where _id = ? `:``
+        const where = id >= 0 ?` where _id = ? `:``
         return this.db.query(`select * from tournament ${where}`, id, cb)
     }
     public async insert(data: Tournament, cb: any) {
+        console.log(data)
         return this.db.query(`insert into tournament set ?`, data, cb)
     }
     public async update(data: Tournament, id:number, cb: any) {
