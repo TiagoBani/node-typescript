@@ -1,0 +1,511 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Node-typescript",
+		"_postman_id": "19bfd84d-4c19-3819-a300-84fe930abc86",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "torneios",
+			"description": "",
+			"item": [
+				{
+					"name": "competicoes",
+					"description": "",
+					"item": [
+						{
+							"name": "http://localhost:3000/api/tournaments/id/competitions",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitions",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": "```bash\nparams url:\n\tid: integer\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/tournaments/id/competitions",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitions",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_competitions\": [\n\t\t{\n\t\t\t\"_id\": 1\n\t\t},\n\t\t{\n\t\t\t\"_id\": 2\n\t\t},\n\t\t{\n\t\t\t\"_id\": 3\n\t\t}\n\t]\n}"
+								},
+								"description": "```bash\nparams url:\n\tid: integer\nparams body:\n\t_competitions: array(json)\n\t\t_id: integer\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/tournaments/37/competitions",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitions",
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": "Metodo não implementado"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/tournaments/id/competitions",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitions",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_competitions\": [\n\t\t{\n\t\t\t\"_id\": 2\n\t\t},\n\t\t{\n\t\t\t\"_id\": 3\n\t\t}\n\t]\n}"
+								},
+								"description": "```bash\nparams url:\n\tid: integer\n```\nVazio para deletar todas as competições do torneio\n```bash\nparams body:\n\t_competitions: array(json)\n\t\t_id: integer\n```"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "competidores",
+					"description": "",
+					"item": [
+						{
+							"name": "http://localhost:3000/api/tournaments/id/competitors",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitors",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": "```bash\nparams url:\n\tid: integer\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/tournaments/id/competitors",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitors",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_competitors\": [\n\t\t{\n\t\t\t\"_id\": 1\n\t\t},\n\t\t{\n\t\t\t\"_id\": 2\n\t\t},\n\t\t{\n\t\t\t\"_id\": 3\n\t\t}\n\t]\n}"
+								},
+								"description": "```bash\nparams url:\n\tid: integer\nparams body:\n\t_competitions: array(json)\n\t\t_id: integer\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/tournaments/id/competitions",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitions",
+								"method": "PUT",
+								"header": [],
+								"body": {},
+								"description": "Metodo não implementado"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/tournaments/37/competitors",
+							"request": {
+								"url": "http://localhost:3000/api/tournaments/37/competitors",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_competitors\": [\n\t\t{\n\t\t\t\"_id\": 2\n\t\t},\n\t\t{\n\t\t\t\"_id\": 3\n\t\t}\n\t]\n}"
+								},
+								"description": "```bash\nparams url:\n\tid: integer\n```\nVazio para deletar todas as competições do torneio\n```bash\nparams body:\n\t_competitors: array(json)\n\t\t_id: integer\n```"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "http://localhost:3000/api/tournaments/id",
+					"request": {
+						"url": "http://localhost:3000/api/tournaments/0",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Torneio 1\",\n\t\"data\": \"2018-09-09\",\n\t\"semana\": 10,\n\t\"vencedor\": {\n\t\t\"_name\":\"Tiago\", \n\t\t\"_age\":\"30\",\n\t\t\"_nascimento\": \"1987-12-11\"\n\t\t\n\t},\n\t\"competidores\": [\n\t\t{\n\t\t\t\"_name\":\"Tiago\", \n\t\t\t\"_age\":\"30\",\n\t\t\t\"_nascimento\": \"1987-12-11\"\n\t\t\t\n\t\t}\n\t],\n\t\"competicoes\": [\n\t\t{\n\t\t\t\"_name\":\"Competicao 1\", \n\t\t\t\"_week\": 10, \n\t\t\t\"_winner\":{\n\t\t\t\t\"_name\":\"Tiago\", \n\t\t\t\t\"_age\":\"30\",\n\t\t\t\t\"_nascimento\": \"1987-12-11\"\n\t\t\t\t}, \n\t\t\t\"_date\": \"2018-10-07\"\n\t\t}\n\t]\n}"
+						},
+						"description": "```bash\nparams url:\n\tid: integer (opcional)\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/tournaments/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:3000/api/tournaments/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_name\": \"Torneio 1\",\n\t\"_date\": \"2018-09-09\",\n\t\"_week\": 10,\n\t\"_winner\": {\n\t\t\"_id\": 1,\n\t\t\"_name\":\"Tiago\", \n\t\t\"_age\":\"30\",\n\t\t\"_birth\": \"1987-12-11\"\n\t\t\n\t}\n}"
+						},
+						"description": "```bash\nparams body:\n\t_name: string\n\t_date: timestamp\n\t_week: integer\n\t_winner: Competitor\n\t_result: string\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/tournaments/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:3000/api/tournaments/id",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_name\": \"Torneio 3\",\n\t\"_date\": \"2018-09-10\",\n\t\"_week\": 10,\n\t\"_winner\": {\n\t\t\"_id\": 3,\n\t\t\"_name\":\"Tiago\", \n\t\t\"_age\":\"30\",\n\t\t\"_birth\": \"1987-12-11\"\n\t\t\n\t}\n}"
+						},
+						"description": "```bash\nparams url:\n\tid: integer\nparams body:\n\t_id: integer,\n\t_name: string\n\t_date: timestamp\n\t_week: integer\n\t_winner: Competitor\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/tournaments/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:3000/api/tournaments/0",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "```bash\nparams url:\n\tid: integer\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "competicoes",
+			"description": "",
+			"item": [
+				{
+					"name": "Competidores",
+					"description": "",
+					"item": [
+						{
+							"name": "http://localhost:3000/api/competitions/id/competitors",
+							"request": {
+								"url": "http://localhost:3000/api/competitions/1/competitors",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": "```bash\nparams url:\n\tid: integer\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/competitions/id/competitors",
+							"request": {
+								"url": "http://localhost:3000/api/competitions/1/competitors",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_competitors\": [\n\t\t{\n\t\t\t\"_id\": 1\n\t\t},\n\t\t{\n\t\t\t\"_id\": 2\n\t\t},\n\t\t{\n\t\t\t\"_id\": 3\n\t\t}\n\t]\n}"
+								},
+								"description": "```bash\nparams url:\n\tid: integer\nparams body:\n\t_competitors: array(json)\n\t\t_id: integer\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/competitions/id/competitors",
+							"request": {
+								"url": "http://localhost:3000/api/competitions/1/competitors",
+								"method": "PUT",
+								"header": [],
+								"body": {},
+								"description": "Metodo não implementado"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/api/competitions/id/competitors",
+							"request": {
+								"url": "http://localhost:3000/api/competitions/1/competitors",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "```bash\nparams url:\n\tid: integer\n```\nVazio para deletar todas as competições do torneio\n```bash\nparams body:\n\t_competitors: array(json)\n\t\t_id: integer\n```\n{\n\t\"_competitors\": [\n\t\t{\n\t\t\t\"_id\": 2\n\t\t},\n\t\t{\n\t\t\t\"_id\": 3\n\t\t}\n\t]\n}"
+								},
+								"description": "```bash\nparams url:\n\tid: integer\n```\nVazio para deletar todas as competições do torneio\n```bash\nparams body:\n\t_competitors: array(json)\n\t\t_id: integer\n```"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "http://localhost:3000/api/competitions/id",
+					"request": {
+						"url": "http://localhost:3000/api/competitions/",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "```bash\nparams url:\n\tid: integer (opcional)\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/competitions/",
+					"request": {
+						"url": "http://localhost:3000/api/competitions/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_week\": 10,\n\t\"_name\": \"Competicao 1\",\n\t\"_date\": \"2018-09-09\",\n\t\"_result\": \"1x0\",\n\t\"_winner\": {\n\t\t\"_id\": 1,\n\t\t\"_name\":\"Tiago\", \n\t\t\"_age\":\"30\",\n\t\t\"_birth\": \"1987-12-11\"\n\t\t\n\t}\n}"
+						},
+						"description": "```bash\nparams body:\n\t_week: integer\n\t_name: string\n\t_date: timestamp\n\t_result: string\n\t_winner: Competitor\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/competitions/id",
+					"request": {
+						"url": "http://localhost:3000/api/competitions/0",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_week\": 10,\n\t\"_name\": \"Competicao 1\",\n\t\"_date\": \"2018-09-09\",\n\t\"_result\": \"1x0\",\n\t\"_winner\": {\n\t\t\"_name\":\"Tiago\", \n\t\t\"_age\":\"30\",\n\t\t\"_birth\": \"1987-12-11\"\n\t\t\n\t},\n\t\"_competitors\": [\n\t\t{\n\t\t\t\"_name\":\"Tiago\", \n\t\t\t\"_age\":\"30\",\n\t\t\t\"_birth\": \"1987-12-11\"\n\t\t\t\n\t\t},\n\t\t{\n\t\t\t\"_name\":\"Alexandra\", \n\t\t\t\"_age\":\"40\",\n\t\t\t\"_birth\": \"1980-12-11\"\n\t\t\t\n\t\t}\n\t]\n}"
+						},
+						"description": "```bash\nparams url:\n\tid: integer\nparams body:\n\t_week: number\n    _name: string\n    _date: string\n    _result: string\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/competitions/id",
+					"request": {
+						"url": "http://localhost:3000/api/competitions/0",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "```bash\nparams url:\n\tid: integer\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "competidores",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/competitors/id",
+					"request": {
+						"url": "http://localhost:3000/api/competitors/0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "```bash\nparams url:\n\tid: integer (opcional)\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/competitors/",
+					"request": {
+						"url": "http://localhost:3000/api/competitors/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_name\": \"Competidor 2\",\n\t\"_birth\": \"2018-09-09\",\n\t\"_age\": 10\n}"
+						},
+						"description": "```bash\nparams body:\n\t_name: string\n\t_age: integer\n\t_birth: timestamp\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/competitors/id",
+					"request": {
+						"url": "http://localhost:3000/api/competitors/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_name\": \"Competidor 1\",\n\t\"_birth\": \"2017-09-09\",\n\t\"_age\": 10\n}"
+						},
+						"description": "```bash\nparams url:\n\tid: integer\nparams body:\n\t_name: string\n\t_age: integer\n\t_birth: timestamp\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/competitors/id",
+					"request": {
+						"url": "http://localhost:3000/api/competitors/0",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "```bash\nparams url:\n\tid: integer\n```\n```bash\nhttp://localhost:3000/competitors/id\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "http://localhost:3000/",
+			"request": {
+				"url": "http://localhost:3000/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
