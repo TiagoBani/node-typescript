@@ -19,7 +19,7 @@ export class serverRoutes {
         this.express.use('/', router)
     }
     private home(){
-        const homeRoute = new HomeRoute(this.express, this.router, '/home')
+        const homeRoute = new HomeRoute(this.express, this.router, '/')
     }
     private competitor(){
         const competitorRoute = new CompetitorRoute(this.express, this.router, '/api/competitors')
