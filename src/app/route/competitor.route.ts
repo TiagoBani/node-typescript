@@ -1,6 +1,6 @@
 import { AbstractCrudRoute } from './shared/abstract-crud.route';
 import { competitorRules } from '../rules/competitor.rules';
-import { CompetitorController } from './../controllers/competitor/competitor.controller';
+import { CompetitorController } from '../controllers/competitor.controller';
 
 export class CompetitorRoute extends AbstractCrudRoute {
     protected controller: any

@@ -1,7 +1,7 @@
 import { iHttp } from "../../shared/iHttp";
 import { AbstractController } from '../shared/abstract.controller';
 import { iPersistent } from "../../models/shared/iPersistent";
-import { CompetitionDAO } from "../../models/dao/competition-dao.model";
+import { CompetitionDAO } from "../../models/dao/competition/competition-dao.model";
 
 export class CompetitionController extends AbstractController implements iPersistent{
 

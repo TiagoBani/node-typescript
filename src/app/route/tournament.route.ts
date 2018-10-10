@@ -2,7 +2,7 @@ import { iHttp } from "../shared/iHttp";
 import { AbstractCrudRoute } from "./shared/abstract-crud.route";
 import { tournamentRules } from '../rules/tournament.rules';
 import { TournamentController } from "../controllers/tournament/tournament.controller";
-import { TournamentCompetitorController } from './../controllers/tournament/tournament-competitor.controller';
+import { TournamentCompetitorController } from "../controllers/tournament/tournament-competitor.controller";
 import { TournamentCompetitionController } from "../controllers/tournament/tournament-competition.controller";
 
 export class TournamentRoute extends AbstractCrudRoute{
