@@ -5,7 +5,8 @@ import { Dao } from '../shared/dao';
 export class CompetitorDAO extends Dao implements iPersistent{
 
     public async select(id: number, cb: any) {
-        const where = id != null?` where _id = ? `:``
+        console.log(id)
+        const where = id >= 0? ` where _id = ? `:``
         return this.db.query(`select * from competitor ${where}`, id, cb)
     }
     public async insert(data: Competitor, cb: any) {
