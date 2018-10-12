@@ -18,58 +18,107 @@ USE `node_typescript`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `competition`
+-- Table structure for table `competition`
 --
 
-LOCK TABLES `competition` WRITE;
-/*!40000 ALTER TABLE `competition` DISABLE KEYS */;
-/*!40000 ALTER TABLE `competition` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `competition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `competition` (
+  `_id` int(11) NOT NULL AUTO_INCREMENT,
+  `_week` int(11) DEFAULT NULL,
+  `_name` varchar(45) DEFAULT NULL,
+  `_date` date DEFAULT NULL,
+  `_winner` text,
+  `_competitors` text,
+  `_result` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `competition_competitor`
+-- Table structure for table `competition_competitor`
 --
 
-LOCK TABLES `competition_competitor` WRITE;
-/*!40000 ALTER TABLE `competition_competitor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `competition_competitor` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `competition_competitor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `competition_competitor` (
+  `_competition` int(11) NOT NULL,
+  `_competitor` int(11) NOT NULL,
+  PRIMARY KEY (`_competition`,`_competitor`),
+  KEY `fk_competition_competitor_2_idx` (`_competitor`),
+  CONSTRAINT `fk_competition_competitor_1` FOREIGN KEY (`_competition`) REFERENCES `competition` (`_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_competition_competitor_2` FOREIGN KEY (`_competitor`) REFERENCES `competitor` (`_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `competitor`
+-- Table structure for table `competitor`
 --
 
-LOCK TABLES `competitor` WRITE;
-/*!40000 ALTER TABLE `competitor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `competitor` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `competitor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `competitor` (
+  `_id` int(11) NOT NULL AUTO_INCREMENT,
+  `_name` varchar(45) DEFAULT NULL,
+  `_age` int(11) DEFAULT NULL,
+  `_birth` date DEFAULT NULL,
+  PRIMARY KEY (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tournament`
+-- Table structure for table `tournament`
 --
 
-LOCK TABLES `tournament` WRITE;
-/*!40000 ALTER TABLE `tournament` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tournament` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `tournament`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tournament` (
+  `_id` int(11) NOT NULL AUTO_INCREMENT,
+  `_name` varchar(45) DEFAULT NULL,
+  `_week` int(11) DEFAULT NULL,
+  `_date` date DEFAULT NULL,
+  `_winner` text,
+  PRIMARY KEY (`_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tournament_competition`
+-- Table structure for table `tournament_competition`
 --
 
-LOCK TABLES `tournament_competition` WRITE;
-/*!40000 ALTER TABLE `tournament_competition` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tournament_competition` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `tournament_competition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tournament_competition` (
+  `_tournament` int(11) NOT NULL,
+  `_competition` int(11) NOT NULL,
+  PRIMARY KEY (`_tournament`,`_competition`),
+  KEY `fk_tournament_competition_2_idx` (`_competition`),
+  CONSTRAINT `fk_tournament_competition_1` FOREIGN KEY (`_tournament`) REFERENCES `tournament` (`_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tournament_competition_2` FOREIGN KEY (`_competition`) REFERENCES `competition` (`_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tournament_competitor`
+-- Table structure for table `tournament_competitor`
 --
 
-LOCK TABLES `tournament_competitor` WRITE;
-/*!40000 ALTER TABLE `tournament_competitor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tournament_competitor` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `tournament_competitor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tournament_competitor` (
+  `_tournament` int(11) NOT NULL,
+  `_competitor` int(11) NOT NULL,
+  PRIMARY KEY (`_tournament`,`_competitor`),
+  KEY `fk_tournament_competitor_2_idx` (`_competitor`),
+  CONSTRAINT `fk_tournament_competitor_1` FOREIGN KEY (`_tournament`) REFERENCES `tournament` (`_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tournament_competitor_2` FOREIGN KEY (`_competitor`) REFERENCES `competitor` (`_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping events for database 'node_typescript'
@@ -88,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-10  5:06:30
+-- Dump completed on 2018-10-12  9:16:29
